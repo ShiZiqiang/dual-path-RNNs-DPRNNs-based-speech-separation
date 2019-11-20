@@ -1,5 +1,5 @@
 # dual-path-RNNs-DPRNNs-based-speech-separation
-A PyTorch implementation of dual-path RNNs (DPRNNs) based speech separation on wsj0-2mix described in "Dual-path RNN: efficient long sequence modeling for time-domain single-channel speech separation".
+A PyTorch implementation of dual-path RNNs (DPRNNs) based speech separation on wsj0-2mix described in the amazing paper "Dual-path RNN: efficient long sequence modeling for time-domain single-channel speech separation".
 
 This implementation is based on https://github.com/kaituoxu/Conv-TasNet and https://github.com/yluo42/TAC, thanks Kaituo and Yi Luo for sharing.
 
