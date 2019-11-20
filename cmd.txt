@@ -1,0 +1,23 @@
+
+mkdir data
+./preprocess.py --in-dir /home/zm/deepseparation/wsj0_wav/2speakers/wav8k/min --out-dir data --sample-rate 8000
+
+./train.py --train_dir data/tr --valid_dir data/cv --sample_rate 8000 --segment 4 --cv_maxlen 6 --W 2 --N 64 --K 250 --D 6 --C 2 --E 256 --H 128 --norm_type gLN --causal 0 --mask_nonlinear relu --use_cuda 1 --epochs 100 --half_lr 1 --early_stop 0 --max_norm 5 --shuffle 1 --batch_size 1 --optimizer adam --lr 1e-3 --momentum 0 --l2 0 --save_folder exp/ --checkpoint 1 --continue_from "" --print_freq 10
+
+CUDA_VISIBLE_DEVICES=2 python train.py --train_dir data/tr --valid_dir data/cv --sample_rate 8000 --segment 4 --cv_maxlen 6 --W 2 --N 64 --K 250 --D 6 --C 2 --E 256 --H 128 --norm_type gLN --causal 0 --mask_nonlinear relu --use_cuda 1 --epochs 100 --half_lr 1 --early_stop 0 --max_norm 5 --shuffle 1 --batch_size 1 --optimizer adam --lr 1e-3 --momentum 0 --l2 0 --save_folder exp/ --checkpoint 1 --continue_from "" --print_freq 10
+
+#./train.py --train_dir data/cv --valid_dir data/cv --sample_rate 8000 --segment 4 --cv_maxlen 6 --W 2 --N 64 --K 250 --D 6 --C 2 --E 256 --H 128 --norm_type gLN --causal 0 --mask_nonlinear relu --use_cuda 1 --epochs 100 --half_lr 1 --early_stop 0 --max_norm 5 --shuffle 1 --batch_size 1 --optimizer adam --lr 1e-3 --momentum 0 --l2 0 --save_folder exp/ --checkpoint 1 --continue_from "" --print_freq 1000
+
+  separate_out_dir=exp/separate
+  ${decode_cmd} --gpu ${ngpu} ${separate_out_dir}/separate.log \
+    separate.py \
+    --model_path ${expdir}/final.pth.tar \
+    --mix_json $separate_dir/mix.json \
+    --out_dir ${separate_out_dir} \
+    --use_cuda $ev_use_cuda \
+    --sample_rate $sample_rate \
+    --batch_size $batch_size
+
+CUDA_VISIBLE_DEVICES=0 python separate.py --model_path exp/temp_best.pth.tar --mix_json data/tt/mix.json --out_dir exp/separate --use_cuda 1 --sample_rate 8000 --batch_size 2
+
+CUDA_VISIBLE_DEVICES=2 python separate.py --model_path exp/temp_best.pth.tar --mix_json data/tt/mix.json --out_dir exp/separate --use_cuda 1 --sample_rate 8000 --batch_size 2
