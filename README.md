@@ -22,6 +22,7 @@ Results:
 We obtain SDRi 19.1017dB on wsj0-2mix with the trained model exp/temp_best.pth.tar
 
 If you find this code is useful, please kindly cite our following new research work on speech separation based on this code. LaFurca achieved 20.55dB SDR improvement, 20.35dB SI-SDR improvement, 3.69 of PESQ, and 94.86% of ESTOI on WSJ-2mix dataset.
+
 @article{shi2020furca,
   title={LaFurca: Iterative Multi-Stage Refined End-to-End Monaural Speech Separation Based on Context-Aware Dual-Path Deep Parallel Inter-Intra Bi-LSTM},
   author={Shi, Ziqiang and Liu, Rujie and Han, Jiqing},
