@@ -3,7 +3,7 @@ A PyTorch implementation of dual-path RNNs (DPRNNs) based speech separation on w
 
 This implementation is based on https://github.com/kaituoxu/Conv-TasNet and https://github.com/yluo42/TAC, thanks Kaituo and Yi Luo for sharing.
 
-Worflow
+Workflow:
 
 step 1: generate jason files with wav path and length
 
@@ -20,3 +20,11 @@ CUDA_VISIBLE_DEVICES=0 python separate.py --model_path exp/temp_best.pth.tar --m
 Results:
 
 We obtain SDRi 19.1017dB on wsj0-2mix with the trained model exp/temp_best.pth.tar
+
+If you find this code is useful, please kindly cite our following new research work on speech separation based on this code. LaFurca achieved 20.55dB SDR improvement, 20.35dB SI-SDR improvement, 3.69 of PESQ, and 94.86% of ESTOI on WSJ-2mix dataset.
+@article{shi2020furca,
+  title={LaFurca: Iterative Multi-Stage Refined End-to-End Monaural Speech Separation Based on Context-Aware Dual-Path Deep Parallel Inter-Intra Bi-LSTM},
+  author={Shi, Ziqiang and Liu, Rujie and Han, Jiqing},
+  journal={arXiv preprint arXiv:2001.08998},
+  year={2020}
+}
